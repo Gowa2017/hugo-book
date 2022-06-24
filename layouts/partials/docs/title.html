@@ -4,7 +4,9 @@
 -->
 {{ $title := "" }}
 
-{{ if .Title }}
+{{ if .Params.SubTitle }}
+  {{ $title = .Params.SubTitle }}
+{{ else if .Title }}
   {{ $title = .Title }}
 {{ else if and .IsSection .File }}
   {{ $title = path.Base .File.Dir | humanize | title }}
