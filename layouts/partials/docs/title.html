@@ -6,6 +6,8 @@
 
 {{ if .Params.SubTitle }}
   {{ $title = .Params.SubTitle }}
+{{ else if .LinkTitle }}
+  {{ $title = .LinkTitle }}
 {{ else if .Title }}
   {{ $title = .Title }}
 {{ else if and .IsSection .File }}
