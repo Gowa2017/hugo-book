@@ -3,13 +3,18 @@
 <script src="https://unpkg.com/plantuml-encoder/dist/plantuml-encoder.min.js" ></script>
 <script>
     (function () {
-        let plantumlPrefix = "language-puml";
-        Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function (code) {
+        function render(code) {
             let image = document.createElement("IMG");
             image.loading = 'lazy'; // Lazy loading
                 image.src = {{ .Site.Params.plantuml_server }} + '/plantuml/svg/' + plantumlEncoder.encode(code.innerText);
             code.parentNode.insertBefore(image, code);
             code.style.display = 'none';
+        }
+        Array.prototype.forEach.call(document.querySelectorAll("[class^=language-puml]"), function (code) {
+            render(code);
+        });
+        Array.prototype.forEach.call(document.querySelectorAll("[class^=language-plantuml]"), function (code) {
+            render(code);
         });
     })();
 </script>
